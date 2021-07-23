@@ -21,7 +21,7 @@ body {
 
 .step {
   margin-bottom: 300px;
-  font-family: "Helvetica", sans-serif;
+  font-family: fira-sans, sans-serif;
   font-size: 16px;
   line-height: 23px;
   color: ghostwhite;
@@ -29,14 +29,14 @@ body {
 
 .step-placeholder {
   margin-bottom: 200px;
-  font-family: "Helvetica", sans-serif;
+  font-family: fira-sans, sans-serif;
   font-size: 16px;
   line-height: 23px;
   color: ghostwhite;
 }
 
 #sections .title {
-  font-family: Arial, Helvetica, "san-serif", sans-serif;
+  font-family: fira-sans, sans-serif;
   font-size: 16px;
   font-weight: bold;
   margin-bottom: 2px;
@@ -47,7 +47,7 @@ body {
 
 .mainstep {
   margin-bottom: 220px;
-  font-family: "Helvetica", sans-serif;
+  font-family: fira-sans, sans-serif;
   font-size: 30px;
   line-height: 23px;
   color: ghostwhite;
@@ -56,7 +56,7 @@ body {
 }
 
 .maintitle {
-  font-family: Arial, Helvetica, "san-serif", sans-serif;
+  font-family: fira-sans, sans-serif;
   font-size: 50px;
   font-weight: bold;
   margin-bottom: 10px;
