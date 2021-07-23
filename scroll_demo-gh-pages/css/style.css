@@ -1,6 +1,8 @@
-
+body {
+  background-color: #2C2F33;
+}
 .container {
-  width: 890px;
+  width: 1200px;
 }
 
 #graphic {
@@ -11,18 +13,26 @@
 #sections {
   position: relative;
   display: inline-block;
-  width: 250px;
+  width: 500px;
   top: 0;
   z-index: 90;
   padding-bottom: 200px;
 }
 
 .step {
+  margin-bottom: 300px;
+  font-family: "Helvetica", sans-serif;
+  font-size: 16px;
+  line-height: 23px;
+  color: ghostwhite;
+}
+
+.step-placeholder {
   margin-bottom: 200px;
   font-family: "Helvetica", sans-serif;
   font-size: 16px;
   line-height: 23px;
-  color: #767678;
+  color: ghostwhite;
 }
 
 #sections .title {
@@ -30,8 +40,30 @@
   font-size: 16px;
   font-weight: bold;
   margin-bottom: 2px;
-  color: #262626;
+  color: #ffffff;
   line-height: 1.2em;
+}
+
+
+.mainstep {
+  margin-bottom: 220px;
+  font-family: "Helvetica", sans-serif;
+  font-size: 30px;
+  line-height: 23px;
+  color: ghostwhite;
+  margin-top: 400px;
+  text-align: center;
+}
+
+.maintitle {
+  font-family: Arial, Helvetica, "san-serif", sans-serif;
+  font-size: 50px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #7289da;
+  line-height: 1.2em;
+  margin-top: 400px;
+  text-align: center;
 }
 
 #extra-space {
@@ -44,19 +76,26 @@
   top: 60px;
   z-index: 1;
   margin-left: 0;
+  margin-top: 100px;
   /* height: 600px; */
   /* width: 600px; */
   /* background-color: #ddd; */
 }
+.highlight {
+  fill: #008080;
+  font-weight: bold;
+}
 
 #vis .title {
   font-size:120px;
+  fill: #7289da;
   text-anchor: middle;
 }
 
 #vis .sub-title {
-  font-size:80px;
+  font-size: 50px;
   text-anchor: middle;
+  fill: #ffffff;
 }
 
 .axis path,
@@ -64,11 +103,6 @@
   fill: none;
   stroke: #666;
   shape-rendering: crispEdges;
-}
-
-.highlight {
-  fill: #008080;
-  font-weight: bold;
 }
 
 .cough-arrow {
