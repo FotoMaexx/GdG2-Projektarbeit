@@ -1,3 +1,7 @@
+var mapShower = document.getElementById('freiburg');
+mapShower.style.height = '500px';
+mapShower.style.marginTop = '100px';
+
 var freiburgmap = L.map('freiburg').setView([51.505, -0.09], 13);
 
 L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
@@ -9,5 +13,9 @@ L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
     accessToken: 'sk.eyJ1IjoibXJteGR6biIsImEiOiJja3JtMTJqd2YwaWwwMnFudnM0d2FnNnhoIn0.OoAiV0D5lXGH-beUJKX5uA'
 }).addTo(freiburgmap);
 
-var mapShower = document.getElementById('freiburg');
-mapShower.style.position = null;
+var circle = L.circle([51.508, -0.11], {
+    color: 'red',
+    fillColor: '#f03',
+    fillOpacity: 0.5,
+    radius: 500
+}).addTo(freiburgmap);

@@ -112,6 +112,5 @@ body {
 }
 
 #freiburg {
-  height: 180px;
-  position: absolute !important;
+  height: 180px !important;
 }

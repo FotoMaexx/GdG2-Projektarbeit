@@ -292,15 +292,14 @@ var scrollVis = function () {
     // activateFunctions are called each
     // time the active section changes
     activateFunctions[0] = showTitle;
-    activateFunctions[1] = showMap;
-    activateFunctions[2] = showFillerTitle;
-    activateFunctions[3] = showGrid;
-    activateFunctions[4] = highlightGrid;
-    activateFunctions[5] = showBar;
-    activateFunctions[6] = showHistPart;
-    activateFunctions[7] = showHistAll;
-    activateFunctions[8] = showCough;
-    activateFunctions[9] = showHistAll;
+    activateFunctions[1] = showFillerTitle;
+    activateFunctions[2] = showGrid;
+    activateFunctions[3] = highlightGrid;
+    activateFunctions[4] = showBar;
+    activateFunctions[5] = showHistPart;
+    activateFunctions[6] = showHistAll;
+    activateFunctions[7] = showCough;
+    activateFunctions[8] = showHistAll;
 
     // updateFunctions are called while
     // in a particular section to update
@@ -308,10 +307,10 @@ var scrollVis = function () {
     // Most sections do not need to be updated
     // for all scrolling and so are set to
     // no-op functions.
-    for (var i = 0; i < 10; i++) {
+    for (var i = 0; i < 9; i++) {
       updateFunctions[i] = function () {};
     }
-    updateFunctions[8] = updateCough;
+    updateFunctions[7] = updateCough;
   };
 
   /**
@@ -347,26 +346,6 @@ var scrollVis = function () {
       .transition()
       .duration(600)
       .attr('opacity', 1.0);
-  }
-
-  /**
-   * showTitle - initial title
-   *
-   * hides: count title
-   * (no previous step to hide)
-   * shows: intro title
-   *
-   */
-  function showMap() {
-    g.selectAll('.count-title')
-        .transition()
-        .duration(0)
-        .attr('opacity', 0);
-
-    g.selectAll('.openvis-title')
-        .transition()
-        .duration(600)
-        .attr('opacity', 1.0);
   }
 
   /**
