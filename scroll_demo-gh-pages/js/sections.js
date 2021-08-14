@@ -348,6 +348,8 @@ var scrollVis = function () {
       .attr('opacity', 1.0);
   }
 
+
+
   /**
    * showFillerTitle - filler counts
    *
@@ -604,6 +606,8 @@ var scrollVis = function () {
       .transition().duration(500)
       .style('opacity', 0);
   }
+
+
 
   /**
    * UPDATE FUNCTIONS
