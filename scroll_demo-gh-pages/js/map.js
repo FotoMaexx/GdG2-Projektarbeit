@@ -155,7 +155,7 @@ function getColor(d) {
 var legend = L.control({position: 'topright'});
 legend.onAdd = function (map) {
 
-    var div = L.DomUtil.create('div', 'info legend');
+    var div = L.DomUtil.create('div', 'info legend'), categories;
     labels = ['<strong>Kategorien</strong>'],
         categories = ['Universitäten/Hochschulen','Bedeutende Unternehmen','Sehenswürdigkeiten'];
 
