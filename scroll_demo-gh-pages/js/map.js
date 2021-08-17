@@ -4,13 +4,11 @@ mapShower.style.marginTop = '100px';
 
 var freiburgmap = L.map('freiburg').setView([48, 7.85], 13);
 
-L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+L.tileLayer('https://api.mapbox.com/styles/v1/mrmxdzn/cksfzxh2k65dm17p1r695ic71/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoibXJteGR6biIsImEiOiJja3JtMHlkMmgwaWZsMm9ub3c2ZXJwdHRzIn0.t0Qz-b_Gmjlnh7ugjH6wcg', {
     attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
     maxZoom: 18,
-    id: 'mapbox/streets-v11',
     tileSize: 512,
     zoomOffset: -1,
-    accessToken: 'sk.eyJ1IjoibXJteGR6biIsImEiOiJja3JtMTJqd2YwaWwwMnFudnM0d2FnNnhoIn0.OoAiV0D5lXGH-beUJKX5uA'
 }).addTo(freiburgmap);
 
  L.geoJson(grenze).addTo(freiburgmap);
@@ -56,11 +54,41 @@ var uni6 = L.circle([47.99208592094861, 7.835051512745338], {
     fillOpacity: 0.5,
     radius: 50
 }).addTo(freiburgmap);
-var marker1 = L.marker([47.9956267069844, 7.8528604071160375]).addTo(freiburgmap);
-var marker2 = L.marker([47.99460096754487, 7.845109556809629]).addTo(freiburgmap);
-var marker3 = L.marker([47.994459081734064, 7.8594144672439565]).addTo(freiburgmap);
-var marker4 = L.marker([47.994212913837764, 7.852597385645492]).addTo(freiburgmap);
-var marker5 = L.marker([47.91604109325798, 7.896377045708866]).addTo(freiburgmap);
+
+var marker1 = L.circle([47.9956267069844, 7.8528604071160375], {
+    color: '#ff7f00',
+    fillColor: '#ff7f00',
+    fillOpacity: 0.5,
+    radius: 50
+}).addTo(freiburgmap);
+
+var marker2 = L.circle([47.99460096754487, 7.845109556809629], {
+    color: '#ff7f00',
+    fillColor: '#ff7f00',
+    fillOpacity: 0.5,
+    radius: 50
+}).addTo(freiburgmap);
+
+var marker3 = L.circle([47.994459081734064, 7.8594144672439565], {
+    color: '#ff7f00',
+    fillColor: '#ff7f00',
+    fillOpacity: 0.5,
+    radius: 50
+}).addTo(freiburgmap);
+
+var marker4 = L.circle([47.994212913837764, 7.852597385645492], {
+    color: '#ff7f00',
+    fillColor: '#ff7f00',
+    fillOpacity: 0.5,
+    radius: 50
+}).addTo(freiburgmap);
+
+var marker5 = L.circle([47.91604109325798, 7.896377045708866], {
+    color: '#ff7f00',
+    fillColor: '#ff7f00',
+    fillOpacity: 0.5,
+    radius: 50
+}).addTo(freiburgmap);
 
 var wirtschaft1 = L.circle([47.99054492319938, 7.837377985645322], {
     color: 'green',
@@ -120,7 +148,7 @@ marker5.bindPopup("<b>Sehenswürdigkeit</b><br>Schauinsland");
 function getColor(d) {
     return d === 'Universitäten/Hochschulen'  ? "#ff0a00" :
         d === 'Bedeutende Unternehmen'  ? "#00891f" :
-            d === 'Sehenswürdigkeiten' ? "#2da1f5" :
+            d === 'Sehenswürdigkeiten' ? "#ff7f00" :
                 d === 'Roadside Hazards' ? "#984ea3" :
                     "#ff7f00";
 }
@@ -129,7 +157,7 @@ legend.onAdd = function (map) {
 
     var div = L.DomUtil.create('div', 'info legend');
     labels = ['<strong>Kategorien</strong>'],
-        categories = ['Universitäten/Hochschulen','Bedeutende Unternehmen','Sehenswürdigkeiten (Marker)'];
+        categories = ['Universitäten/Hochschulen','Bedeutende Unternehmen','Sehenswürdigkeiten'];
 
     for (var i = 0; i < categories.length; i++) {
 
