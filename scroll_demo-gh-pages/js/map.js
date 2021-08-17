@@ -55,7 +55,7 @@ var uni6 = L.circle([47.99208592094861, 7.835051512745338], {
     radius: 50
 }).addTo(freiburgmap);
 
-var marker1 = L.circle([47.9956267069844, 7.8528604071160375], {
+/*var marker1 = L.circle([47.9956267069844, 7.8528604071160375], {
     color: '#ff7f00',
     fillColor: '#ff7f00',
     fillOpacity: 0.5,
@@ -88,41 +88,41 @@ var marker5 = L.circle([47.91604109325798, 7.896377045708866], {
     fillColor: '#ff7f00',
     fillOpacity: 0.5,
     radius: 50
-}).addTo(freiburgmap);
+}).addTo(freiburgmap);*/
 
 var wirtschaft1 = L.circle([47.99054492319938, 7.837377985645322], {
     color: 'green',
     fillColor: '#37a700',
     fillOpacity: 0.5,
-    radius: 90
+    radius: 50
 }).addTo(freiburgmap);
 
 var wirtschaft2 = L.circle([48.01175905856233, 7.83670653961607], {
     color: 'green',
     fillColor: '#37a700',
     fillOpacity: 0.5,
-    radius: 90
+    radius: 50
 }).addTo(freiburgmap);
 
 var wirtschaft3 = L.circle([48.013447607552976, 7.840694510865576], {
     color: 'green',
     fillColor: '#37a700',
     fillOpacity: 0.5,
-    radius: 90
+    radius: 50
 }).addTo(freiburgmap);
 
 var wirtschaft4 = L.circle([48.033384664955726, 7.8588659541578085], {
     color: 'green',
     fillColor: '#37a700',
     fillOpacity: 0.5,
-    radius: 90
+    radius: 50
 }).addTo(freiburgmap);
 
 var wirtschaft5 = L.circle([47.98464731989062, 7.8280869691797985], {
     color: 'green',
     fillColor: '#37a700',
     fillOpacity: 0.5,
-    radius: 90
+    radius: 50
 }).addTo(freiburgmap);
 
 wirtschaft1.bindPopup("<b>IT & Medien</b><br>embeX GmbH");
@@ -138,11 +138,11 @@ uni4.bindPopup("Evangelische Hochschule Freiburg");
 uni5.bindPopup("Hochschule für Musik Freiburg");
 uni6.bindPopup("Hochschule Macromedia, University of Applied Sciences");
 
-marker1.bindPopup("<b>Sehenswürdigkeit</b><br>Freiburger Münster");
+/*marker1.bindPopup("<b>Sehenswürdigkeit</b><br>Freiburger Münster");
 marker2.bindPopup("<b>Sehenswürdigkeit</b><br>Universitätsbibliothek Freiburg");
 marker3.bindPopup("<b>Sehenswürdigkeit</b><br>Schlossberg<br>Bewaldeter Berg mit Wanderwegen und Aussichtspunkten mit Panoramablick über Freiburg.");
 marker4.bindPopup("<b>Sehenswürdigkeit</b><br>Augustinermuseum");
-marker5.bindPopup("<b>Sehenswürdigkeit</b><br>Schauinsland");
+marker5.bindPopup("<b>Sehenswürdigkeit</b><br>Schauinsland");*/
 
 
 function getColor(d) {
@@ -157,7 +157,7 @@ legend.onAdd = function (map) {
 
     var div = L.DomUtil.create('div', 'info legend'), categories;
     labels = ['<strong>Kategorien</strong>'],
-        categories = ['Universitäten/Hochschulen','Bedeutende Unternehmen','Sehenswürdigkeiten'];
+        categories = ['Universitäten/Hochschulen','Bedeutende Unternehmen',/*'Sehenswürdigkeiten'*/];
 
     for (var i = 0; i < categories.length; i++) {
 
