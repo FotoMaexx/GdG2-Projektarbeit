@@ -27,6 +27,23 @@ body {
   color: ghostwhite;
 }
 
+.step-map {
+  width: 500px;
+  font-family: fira-sans, sans-serif;
+  font-size: 16px;
+  line-height: 23px;
+  color: ghostwhite;
+}
+
+.title-map {
+  font-family: fira-sans, sans-serif;
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 2px;
+  color: #ffffff;
+  line-height: 1.2em;
+}
+
 .step-placeholder {
   margin-bottom: 200px;
   font-family: fira-sans, sans-serif;
@@ -46,7 +63,7 @@ body {
 
 
 .mainstep {
-  margin-bottom: 220px;
+  margin-bottom: 40%;
   font-family: fira-sans, sans-serif;
   font-size: 30px;
   line-height: 23px;

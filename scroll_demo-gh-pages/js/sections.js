@@ -184,13 +184,13 @@ var scrollVis = function () {
       .attr('class', 'title count-title highlight')
       .attr('x', width / 2)
       .attr('y', height / 2)
-      .text('180');
+      .text('11.876');
 
     g.append('text')
       .attr('class', 'sub-title count-title')
       .attr('x', width / 2)
       .attr('y', (height / 2) + (height / 5))
-      .text('Hammerhart');
+      .text('Unternehmen');
 
     g.selectAll('.count-title')
       .attr('opacity', 0);
