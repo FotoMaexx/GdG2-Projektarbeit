@@ -109,6 +109,12 @@ body {
   text-anchor: middle;
 }
 
+#vis .arbeitslos {
+  font-size: 120px;
+  fill: #7289da;
+  text-anchor: middle;
+}
+
 #vis .sub-title {
   font-size: 50px;
   text-anchor: middle;
