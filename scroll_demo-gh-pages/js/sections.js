@@ -14,7 +14,8 @@ var scrollVis = function () {
 
   // Eigene Daten
   var arbeiter = [661204, 436120, 267292];
-  var arbeiter2 = [661204, 15348];
+  var arbeiter2 = [374000, 15348];
+  var arbeitslos = [7.5, 7.6, 8.1, 7.8, 9.2, 9.2, 7.8, 7.1, 6.9, 6.4, 6.1, 5.9, 6.0, 6.0, 6.0, 5.9, 5.3, 4.9, 4.9, 4.1];
 
   // Keep track of which visualization
   // we are on and which was the last
@@ -25,7 +26,7 @@ var scrollVis = function () {
   var activeIndex = 0;
 
   // Sizing for the grid visualization
-  var squareSize = 6;
+  var squareSize = 8;
   var squarePad = 2;
   var numPerRow = width / (squareSize + squarePad);
 
@@ -59,7 +60,7 @@ var scrollVis = function () {
 
   // Color is determined just by the index of the bars
   var barColors = { 0: '#008080', 1: '#399785', 2: '#5AAF8C' };
-  var barColors2 = { 0: '#399785', 1: '#ce1339' };
+  var barColors2 = { 0: '#008080', 1: '#ce1339' };
 
   // The histogram display shows the
   // first 30 minutes of data
@@ -69,13 +70,25 @@ var scrollVis = function () {
     .domain([0, 30])
     .range([0, width - 20]);
 
+  var xHistScaleArbeit = d3.scaleLinear()
+      .domain([2001, 2020])
+      .range([0, width - 20]);
+
   var xBaarScale = d3.scaleLinear()
       .domain([0, 700000])
+      .range([0, width]);
+
+  var xBaarScale2 = d3.scaleLinear()
+      .domain([0, 375000])
       .range([0, width]);
 
   // @v4 using new scale name
   var yHistScale = d3.scaleLinear()
     .range([height, 0]);
+
+  var yHistScaleArbeit = d3.scaleLinear()
+      .domain([10, 0])
+      .range([height, 0]);
 
   // The color translation uses this
   // scale to convert the progress
@@ -91,13 +104,23 @@ var scrollVis = function () {
   // scale, but I will use two separate
   // ones to keep things easy.
   // @v4 using new axis name
-  var xAxisBar = d3.axisBottom()
+  var xAxisBar= d3.axisBottom()
       .scale(xBaarScale)
       .ticks(8);
+
+  var xAxisBar2= d3.axisBottom()
+      .scale(xBaarScale2)
+      .ticks(8);
+
   // @v4 using new axis name
   var xAxisHist = d3.axisBottom()
-    .scale(xHistScale)
-    .tickFormat(function (d) { return d + ' min'; });
+      .scale(xHistScale)
+      .tickFormat(function (d) { return d + ' min'; });
+
+  var xAxisHistArbeit = d3.axisBottom()
+      .scale(xHistScaleArbeit)
+      .tickFormat(function (d) { return d; })
+      .ticks(18);
 
   // When scrolling to a new section
   // the activation function for that
@@ -254,7 +277,7 @@ var scrollVis = function () {
       .attr('width', squareSize)
       .attr('height', squareSize)
       .attr('fill', '#fff')
-      .classed('fill-square', function (d) { return d.filler; })
+      .classed('fill-square', function (d, i) { return !(i % 3); })
       .attr('x', function (d) { return d.x;})
       .attr('y', function (d) { return d.y;})
       .attr('opacity', 0);
@@ -271,6 +294,17 @@ var scrollVis = function () {
       .attr('width', xHistScale(histData[0].x1) - xHistScale(histData[0].x0) - 1)
       .attr('fill', barColors[0])
       .attr('opacity', 0);
+
+    var histArbeit = g.selectAll('.histArbeit').data(fillerCounts);
+    var arbeitE2 = histArbeit.enter()
+        .append('rect')
+        .attr('class', 'histArbeit');
+    histArbeit = histArbeit.merge(arbeitE2)
+        .attr('x', 0)
+        .attr('y', 160)
+        .attr('fill', barColors[0])
+        .attr('width', 100)
+        .attr('height', 0);
 
     // cough title
     //g.append('text')
@@ -316,11 +350,12 @@ var scrollVis = function () {
     activateFunctions[1] = showFillerTitle;
     activateFunctions[2] = showBar;
     activateFunctions[3] = showBar2;
-    activateFunctions[4] = showGrid;
-    activateFunctions[5] = highlightGrid;
-    activateFunctions[6] = showHistPart;
-    activateFunctions[7] = showHistAll;
-    activateFunctions[8] = showCough;
+    activateFunctions[4] = showHistArbeit;
+    activateFunctions[5] = showGrid;
+    activateFunctions[6] = highlightGrid;
+    activateFunctions[7] = showHistPart;
+    activateFunctions[8] = showHistAll;
+    activateFunctions[9] = showCough;
 
     // updateFunctions are called while
     // in a particular section to update
@@ -412,24 +447,37 @@ var scrollVis = function () {
    */
   function showGrid() {
     hideAxis();
-    g.selectAll('.bar2')
-        .transition()
-        .duration(600)
-        .attr('width', 0);
 
-    g.selectAll('.bar-text2')
+    g.selectAll('.fill-square')
+        .transition('move-fills')
+        .duration(0)
+        .attr('x', function (d) {
+          return d.x;
+        })
+        .attr('y', function (d) {
+          return d.y;
+        });
+
+    g.selectAll('.hist')
         .transition()
         .duration(0)
-        .attr('opacity', 0);
+        .attr('height', function () { return 0; })
+        .attr('y', function () { return height; })
+        .style('opacity', 0);
+
+    g.selectAll('.fill-square')
+        .transition()
+        .duration(800)
+        .attr('fill', '#ddd');
 
     g.selectAll('.square')
-      .transition()
-      .duration(600)
-      .delay(function (d) {
-        return 5 * d.row;
-      })
-      .attr('opacity', 1.0)
-      .attr('fill', '#ddd');
+        .transition()
+        .duration(600)
+        .delay(function (d) {
+          return 5 * d.row;
+        })
+        .attr('opacity', 1.0)
+        .attr('fill', '#ddd');
   }
 
   /**
@@ -445,7 +493,7 @@ var scrollVis = function () {
 
     g.selectAll('.hist')
         .transition()
-        .duration(600)
+        .duration(0)
         .attr('height', function () { return 0; })
         .attr('y', function () { return height; })
         .style('opacity', 0);
@@ -460,8 +508,6 @@ var scrollVis = function () {
     // move happens even if other
     // transitions are interrupted.
     g.selectAll('.fill-square')
-      .transition('move-fills')
-      .duration(800)
       .attr('x', function (d) {
         return d.x;
       })
@@ -473,7 +519,7 @@ var scrollVis = function () {
       .transition()
       .duration(800)
       .attr('opacity', 1.0)
-      .attr('fill', function (d) { return d.filler ? '#008080' : '#ddd'; });
+      .attr('fill', function (d) { return 9 ? '#008080' : '#ddd'; });
   }
 
   /**
@@ -508,22 +554,6 @@ var scrollVis = function () {
         .duration(0)
         .attr('opacity', 0);
 
-    g.selectAll('.fill-square')
-        .transition()
-        .duration(600)
-        .attr('opacity', 0);
-
-    g.selectAll('.fill-square')
-      .transition()
-      .duration(800)
-      .attr('x', 0)
-      .attr('y', function (d, i) {
-        return yBarScale(i % 3) + yBarScale.bandwidth() / 2;
-      })
-      .transition()
-      .duration(0)
-      .attr('opacity', 0);
-
     g.selectAll('.hist')
       .transition()
       .duration(600)
@@ -539,6 +569,7 @@ var scrollVis = function () {
   }
 
   function showBar2() {
+    showAxis(xAxisBar2);
     hideAxis();
 
     g.selectAll('.bar')
@@ -555,6 +586,13 @@ var scrollVis = function () {
         .transition()
         .duration(800)
         .attr('opacity', 0);
+
+    g.selectAll('.hist')
+        .transition()
+        .duration(0)
+        .attr('height', function () { return 0; })
+        .attr('y', function () { return height; })
+        .style('opacity', 0);
 
     g.selectAll('.square')
         .transition()
@@ -588,7 +626,7 @@ var scrollVis = function () {
         .transition()
         .delay(function (d, i) { return 300 * (i + 1);})
         .duration(600)
-        .attr('width', function (d, i) { return xBaarScale(arbeiter2[i]);});
+        .attr('width', function (d, i) { return xBaarScale2(arbeiter2[i]);});
 
     g.selectAll('.bar-text2')
         .transition()
@@ -741,6 +779,69 @@ var scrollVis = function () {
       .style('fill', function (d) {
         return (d.x0 >= 14) ? coughColorScale(progress) : '#008080';
       });
+  }
+
+
+  function showHistArbeit() {
+    // ensure the axis to histogram one
+    showAxis(xAxisHistArbeit);
+
+    g.selectAll('.bar')
+        .transition()
+        .duration(0)
+        .attr('width', 0);
+
+    g.selectAll('.bar2')
+        .transition()
+        .duration(0)
+        .attr('width', 0);
+
+    g.selectAll('.bar-text2')
+        .transition()
+        .duration(0)
+        .attr('opacity', 0);
+
+    g.selectAll('.square')
+        .transition()
+        .duration(0)
+        .attr('opacity', 0);
+
+    g.selectAll('.fill-square')
+        .transition()
+        .duration(0)
+        .attr('opacity', 0);
+
+    g.selectAll('.fill-square')
+        .transition()
+        .duration(0)
+        .attr('x', 0)
+        .attr('y', function (d, i) {
+          return yBarScale(i % 3) + yBarScale.bandwidth() / 2;
+        })
+        .transition()
+        .duration(0)
+        .attr('opacity', 0);
+
+    g.selectAll('.cough')
+        .transition()
+        .duration(0)
+        .attr('opacity', 0);
+
+    // named transition to ensure
+    // color change is not clobbered
+    g.selectAll('.histArbeit')
+        .transition('color')
+        .duration(500)
+        .style('fill', '#008080')
+        .style('opacity', 1.0);
+
+    g.selectAll('.histArbeit')
+        .transition()
+        .duration(12000)
+        .attr('x', function (d, i) { return 2001 + i;})
+        .attr('y', 0)
+        .attr('height', function (d, i) { return yHistScaleArbeit(arbeitslos[i]); })
+        .style('opacity', 1.0);
   }
 
   /**
