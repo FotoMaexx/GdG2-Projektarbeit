@@ -7,6 +7,9 @@
     <link rel="stylesheet" href="https://use.typekit.net/zys4sle.css">
     <link rel="stylesheet" href="css/leaflet.css"/>
     <meta charset="UTF-8">
+
+    <script src="https://d3js.org/d3.v6.js"></script>
+    <script src="https://unpkg.com/d3-simple-slider"></script>
 </head>
 <body>
 <div class="container">
@@ -15,16 +18,16 @@
         Ein Projekt von Maximilian Hauser, Lukas Steinwender und Marcel Greiner
     </section>
 
-    <div class="step-map">
-        <div class="title-map">Erfolgreiche Standortentwicklung</div>
-        Durch Verbesserung der Lebensumstände entwickelte Freiburg sich zu einem lukrativen Standort. Auf der Karte
-        erhalten sie einen Überblick über die wichtigsten Firmen und Bildungseinrichtungen der Stadt.
-        <div id="freiburg" style="position: right; width: 1200px; position: relative;" ></div></div>
-
-
     <div id='graphic'>
         <div id='sections'>
             <section class="step">
+            </section>
+            <section class="step" style="margin-bottom: 150px;">
+                <div class="step-map">
+                    <div class="title-map">Erfolgreiche Standortentwicklung</div>
+                    Durch Verbesserung der Lebensumstände entwickelte Freiburg sich zu einem lukrativen Standort. Auf der Karte
+                    erhalten sie einen Überblick über die wichtigsten Firmen und Bildungseinrichtungen der Stadt.
+                    <div id="freiburg" style="position: relative; width: 1200px; position: relative;" ></div></div>
             </section>
             <section class="step">
                 <div class="title">Anzahl Unternehmen</div>
@@ -39,8 +42,9 @@
                 In Freiburg gibt es 15348 Arbeitslose (Jahresdurchschnitt 2020). Berechnet auf Basis aller zivilen Erwerbspersonen macht das eine Quote von 4,1%.
             </section>
             <section class="step">
-                <div class="title">Arbeitslosenquote</div>
-                In Freiburg gibt es 15348 Arbeitslose (Jahresdurchschnitt 2020). Berechnet auf Basis aller zivilen Erwerbspersonen macht das eine Quote von 4,1%.
+                <div class="title">Arbeitslosenquote - Entwicklung</div>
+                2006 war die Arbeitslosenquote in Freiburg mit 9,2% auf einem absoluten Hochpunkt. Seitdem sinkt diese allerdings konstant auf zuletzt 2020 4,1%. Durch den Scroller kann der Graph erweitert oder verfeinert werden.
+                <div id="slider"></div>
             </section>
             <section class="step">
                 <div class="title">Schüler in Freiburg</div>
@@ -49,20 +53,6 @@
             <section class="step">
                 <div class="title">Gymnasiasten</div>
                 Von den 24.654 Schülern besuchen 8.757 ein Gymnasium. Das bedeutet knapp ein Drittel der Schüler in Freiburg besuchen das Gymnasium.
-            </section>
-            <section class="step">
-                <div class="title">Bildung</div>
-                Wie entwickelte sich die Bildung im Laufe der Jahre.
-            </section>
-            <section class="step">
-                <div class="title">Anzahl Studenten/Azubis</div>
-                Wie entwickelte sich die Anzahl der Lernenden im Laufe der Jahre.
-            </section>
-            <section class="step">
-                <div class="title">Jährlicher Gesamtumsatz</div>
-                Wie entwickelte sich der Gesamtumsatz im Laufe der Jahre.
-                <br>
-                Danke fürs anschauen!
             </section>
         </div>
         <div id='vis'>
