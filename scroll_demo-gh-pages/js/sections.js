@@ -426,6 +426,7 @@ var scrollVis = function () {
     activateFunctions[5] = showHistArbeit;
     activateFunctions[6] = showGrid;
     activateFunctions[7] = highlightGrid;
+    activateFunctions[8] = leerLauf;
 
     // updateFunctions are called while
     // in a particular section to update
@@ -499,7 +500,8 @@ var scrollVis = function () {
     g.selectAll('.bar')
         .transition()
         .duration(0)
-        .attr('width', 0);
+        .attr('width', 0)
+        .attr('opacity', 0);
 
     g.selectAll('.bar-text')
         .transition()
@@ -655,6 +657,7 @@ var scrollVis = function () {
       .transition()
       .delay(function (d, i) { return 300 * (i + 1);})
       .duration(600)
+        .attr('opacity', 1.0)
       .attr('width', function (d, i) { return xBaarScale(arbeiter[i]);});
 
     g.selectAll('.uno')
@@ -838,6 +841,7 @@ var scrollVis = function () {
    */
   function showAxis(axis) {
     g.select('.x.axis')
+        .style('fill', '#ddd')
       .call(axis)
       .transition().duration(500)
       .style('opacity', 1);
@@ -889,9 +893,15 @@ var scrollVis = function () {
       });
   }
 
+  function leerLauf() {
+    g.selectAll('.square')
+        .transition()
+        .duration(500)
+        .attr('opacity', 0);
+  }
+
 
   function showHistArbeit() {
-    // ensure the axis to histogram one
     showAxis(xAxisHistArbeit);
 
     g.selectAll('.bar')
@@ -1112,5 +1122,3 @@ function display(data) {
 
 // load data and display
 d3.tsv('data/words.tsv', display);
-
-function leerLauf() { }
